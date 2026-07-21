@@ -1,13 +1,13 @@
 [
   {
-    "name": "Book a Table",
+    "name": "Book a Table shows welcome + privacy + continue",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Initiate the table booking flow"
+              "text": "Thank you for using TableReserve! We'll collect your booking details below.\n\nWe will never share your information with third parties. Your data is used solely for table reservation purposes.\n\nTap continue to start your reservation."
             }
           }
         ],

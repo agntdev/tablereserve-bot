@@ -1,15 +1,19 @@
-import { Composer } from "grammy";
+import { Composer, type Context } from "grammy";
 import type { Ctx } from "../bot.js";
-import { mainMenuKeyboard } from "../toolkit/index.js";
+import { mainMenuKeyboard, registerMainMenuItem } from "../toolkit/index.js";
 
-// The /start handler renders the bot's MAIN MENU — the primary way users operate
-// a button-first bot. A feature adds its own button by calling
-// `registerMainMenuItem(...)` in its own `src/handlers/<slug>.ts`; this handler
-// renders whatever is registered (plus a Help button), so you do NOT edit this
-// file to add a feature. Send ONE message — no placeholder line above the menu.
-const composer = new Composer<Ctx>();
+// Wire the booking and owner dashboard buttons to the /start main menu. Handlers
+// wire themselves with .command / .on / .callbackQuery inside their modules; the
+// menu buttons live here so owners see every feature's button when they open the
+// menu — the handler's actual .command registration is the entry point for a
+// slash command, the menu button is a button-first gateway.
+
+registerMainMenuItem({ label: "Book a Table", data: "booking:start", order: 10 });
+registerMainMenuItem({ label: "Owner Dashboard", data: "owner:dashboard", order: 20 });
 
 const WELCOME = "👋 Welcome! Tap a button below to get started.";
+
+const composer = new Composer<Ctx>();
 
 composer.command("start", async (ctx) => {
   await ctx.reply(WELCOME, { reply_markup: mainMenuKeyboard() });

@@ -1,13 +1,13 @@
 [
   {
-    "name": "Owner Dashboard",
+    "name": "Owner Dashboard shows actions",
     "steps": [
       {
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Access the owner dashboard for managing reservations and settings"
+              "text": "📊 Owner Dashboard\n\nToday's remaining capacity: Loading…\n\nNext upcoming reservations:\n• No reservations today\n\nTap an action below:"
             }
           }
         ],
